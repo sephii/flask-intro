@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Bienvenue sur ma page!</h1>
+        <p>
+            Laissez un message dans le livre d’or.
+        </p>
+        <div>
+            <form method="POST">
+                <div>
+                    <label for="author">Nom: </label>
+                    <input id="author" name="author" type="text">
+                </div>
+                <div>
+                    <label for="comment">Commentaire: </label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <button>Envoyer</button>
+            </form>
+        </div>
+
+        <h2>Entrées du livre d’or</h2>
+        {% for entry in guestbook %}
+        <div>
+            {# `entry.posted_at` is a Python datetime object, so we can use the
+            strftime method on it to format it. See
+            https://docs.python.org/fr/3/library/datetime.html#strftime-and-strptime-format-codes
+            for more information #}
+            <p><strong>{{ entry.author }}</strong>, le {{ entry.posted_at.strftime("%d.%m.%Y à %H:%M") }}</p>
+            <p>{{ entry.comment }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+    </body>
+</html>
